@@ -6,8 +6,9 @@ from app import models
 def UserCreat(request):
     if request.method == "POST":
         username = request.POST["username"]
-        password = request.POST["password"]
-        models.UserInfo.objects.create(user=username,pwd = password)
+        phone = request.POST["phone"]
+        print(username,phone)
+        models.user.objects.create(name=username,phone = phone)
         data={
             "msg":"请求成功",
             "data":{}
@@ -19,7 +20,7 @@ def UserCreat(request):
 def UserGet(request):
     data = {
         "msg":200,
-        "data":models.UserInfo.objects.all()
+        "data":models.user.objects.all()
     }
     if request.method == "GET":
         return render(request,"index.html",{"data":data})
