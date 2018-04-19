@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static "css/index.css" %}" />
+    <title>index</title>
+</head>
+<body class="contain">
+    <div>
+        {% if data.data %}
+        <table>
+            <thead>
+                <th>用户名</th>
+                <th>手机号码</th>
+            </thead>
+            <tbody>
+                {% for line in data.data %}
+                    <tr>
+                        <td>{{ line.name }}</td>
+                        <td>{{ line.phone }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+            <h1>暂无数据</h1>
+            <form action="userCreat/" method="post">
+                <table>
+                    <thead>
+                        <th>用户名</th>
+                        <th>手机号码</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="text" placeholder="用户名" name="username" /></td>
+                            <td><input type="text" placeholder="手机号码" name="phone"/></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <input type="submit" value="登记" />
+            </form>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -23,6 +23,6 @@ def UserGet(request):
         "data":models.user.objects.all()
     }
     if request.method == "GET":
-        return render(request,"index.html",{"data":data})
+        return render(request, "TestList.html", {"data":data})
     else:
         return HttpResponse("请求方式错误2")
