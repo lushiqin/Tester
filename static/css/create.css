@@ -1,0 +1,9 @@
+.div1,.div2,.div3{
+    text-align: center;
+    width: 600px;
+    background-color: lavender;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 20px;
+    padding: 10px;
+}
