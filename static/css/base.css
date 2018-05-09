@@ -11,3 +11,6 @@ body{
     font-family: "Adobe 楷体 Std R";
     font-size: inherit;
 }
+.test{
+    margin: auto;
+}
