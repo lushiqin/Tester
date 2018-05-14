@@ -23,5 +23,6 @@ urlpatterns = [
     path('userCreat/', views.UserCreat),
     path(r'', index.index),
     path(r'create',index.createHtml),
-    path(r'getOpenId',wecatController.getOpenId)
+    path(r'getOpenId',wecatController.getOpenId),
+    # path(r'postTest',wecatController.postTest)
 ]
