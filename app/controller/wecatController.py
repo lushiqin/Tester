@@ -16,3 +16,14 @@ def getOpenId(request):
     }
     response = requests.get(url=url,params=param)
     return HttpResponse(response.text)
+
+#新增服务器信息
+def addHost(request):
+    hostName = ""
+    hostUrl = ""
+    models.host.objects.create(hostName = hostName,hostUrl = hostUrl)
+    return HttpResponse("addhost")
+#查询所有服务器信息
+def secHost(request):
+    hostList = models.host.objects.all()
+    return HttpResponse(hostList)
