@@ -19,10 +19,15 @@ def getOpenId(request):
 
 #新增服务器信息
 def addHost(request):
-    hostName = ""
-    hostUrl = ""
+    responseBody = request.body
+    content = json.loads(responseBody.decode('utf-8'))
+    print(content)
+    hostName = content['hostName']
+    hostUrl = content['hostUrl']
     models.host.objects.create(hostName = hostName,hostUrl = hostUrl)
-    return HttpResponse("addhost")
+    return HttpResponse("200")
+
+
 #查询所有服务器信息
 def secHost(request):
     hostList = models.host.objects.all()
