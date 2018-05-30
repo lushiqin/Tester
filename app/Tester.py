@@ -4,7 +4,7 @@ from django.shortcuts import HttpResponse
 from app.models import host
 
 def Tester(request):
-    #查询
+    #查询1111
     selectValue = host.objects.get(id = 1).hostName.encode("utf-8")
     #修改
     host.objects.filter(id = 1).update(hostName = "我的服务器")
