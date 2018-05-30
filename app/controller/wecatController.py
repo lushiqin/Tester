@@ -16,16 +16,3 @@ def getOpenId(request):
     }
     response = requests.get(url=url,params=param)
     return HttpResponse(response.text)
-
-
-# def postTest(requset):
-#     postData = requset.body
-#     postData1 = postData.decode('utf-8')
-#     postData2 = json.loads(postData1)
-#     print("loads = ",postData2)
-#     try:
-#         # print("no loads = ",postData1['username'])
-#         print("loads = ",postData2['username'])
-#     except Exception as e:
-#         print(e)
-#     return HttpResponse("11111")
