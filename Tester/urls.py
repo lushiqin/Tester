@@ -15,14 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from app import views,index
+from app import views,index,Tester
 from app.controller import wecatController
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('userCreat/', views.UserCreat),
     path(r'', index.index),
-    path(r'create',index.createHtml),
+    path(r'test',Tester.Tester),
     path(r'getOpenId',wecatController.getOpenId),
     # path(r'postTest',wecatController.postTest)
 ]
