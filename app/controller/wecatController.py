@@ -30,5 +30,6 @@ def addHost(request):
 
 #查询所有服务器信息
 def secHost(request):
-    hostList = models.host.objects.all()
+    hostList = models.host.objects.all().values()
+    print(hostList,len(hostList))
     return HttpResponse(hostList)
