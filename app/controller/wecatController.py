@@ -17,15 +17,19 @@ def getOpenId(request):
     response = requests.get(url=url,params=param)
     return HttpResponse(response.text)
 
+#新增服务器信息
+def addHost(request):
+    responseBody = request.body
+    content = json.loads(responseBody.decode('utf-8'))
+    print(content)
+    hostName = content['hostName']
+    hostUrl = content['hostUrl']
+    models.host.objects.create(hostName = hostName,hostUrl = hostUrl)
+    return HttpResponse("200")
 
-# def postTest(requset):
-#     postData = requset.body
-#     postData1 = postData.decode('utf-8')
-#     postData2 = json.loads(postData1)
-#     print("loads = ",postData2)
-#     try:
-#         # print("no loads = ",postData1['username'])
-#         print("loads = ",postData2['username'])
-#     except Exception as e:
-#         print(e)
-#     return HttpResponse("11111")
+
+#查询所有服务器信息
+def secHost(request):
+    hostList = models.host.objects.all().values()
+    print(hostList,len(hostList))
+    return HttpResponse(hostList)

@@ -24,5 +24,7 @@ urlpatterns = [
     path(r'', index.index),
     path(r'test',Tester.Tester),
     path(r'getOpenId',wecatController.getOpenId),
+    path(r'addHost',wecatController.addHost),
+    path(r'secHost',wecatController.secHost)
     # path(r'postTest',wecatController.postTest)
 ]
