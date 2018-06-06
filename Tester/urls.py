@@ -27,6 +27,8 @@ urlpatterns = [
     path(r'addHost',wecatController.addHost),
     path(r'secHost',wecatController.secHost),
     path(r'secUser',wecatController.secUser),
-    path(r'addUser',wecatController.addUser)
+    path(r'addUser',wecatController.addUser),
+    path(r'addCommo',wecatController.addCommo),
+    path(r'secCommo',wecatController.secCommo)
     # path(r'postTest',wecatController.postTest)
 ]

@@ -22,9 +22,11 @@ def getOpenId(request):
 def addHost(request):
     responseBody = request.body
     content = json.loads(responseBody.decode('utf-8'))
-    hostName = content['hostName']
-    hostUrl = content['hostUrl']
-    models.host.objects.create(hostName = hostName,hostUrl = hostUrl)
+    data = {
+        "hostName":content['hostName'],
+        "hostUrl":content['hostUrl']
+    }
+    models.host.objects.update_or_create(hostUrl = content['hostUrl'],defaults=data)
     return HttpResponse("200")
 
 
@@ -40,7 +42,16 @@ def secHost(request):
 def addUser(request):
     responseBody = request.body
     responseData = json.loads(responseBody.decode('utf-8'))
-    models.user.objects.create(phone = responseData['phone'],name = responseData['name'],token=responseData['token'],status = responseData['status'])
+    data={
+        "name":responseData["name"],
+        "phone":responseData["phone"],
+        "token":responseData["token"],
+        "status":responseData["status"]
+    }
+    try:
+        models.user.objects.update_or_create(phone = responseData['phone'],defaults=data)
+    except Exception as e:
+        print(e)
     return HttpResponse("200")
 
 #查询用户信息
@@ -55,7 +66,13 @@ def secUser(request):
 def addCommo(request):
     responseBody = request.body
     responseData = json.loads(responseBody.decode('utf-8'))
-    models.commodity.objects.create(commoName =responseData['commoName'],commoPrice = responseData['commoPrice'],commoInfo=responseData['commoInfo'],status=responseData['status'])
+    data = {
+        "commoName":responseData['commoName'],
+        "commoPrice": responseData['commoPrice'],
+        "commoInfo": responseData['commoInfo'],
+        "status": responseData['status'],
+    }
+    models.commodity.objects.update_or_create(commoName = responseData['commoName'],defaults=data)
     return HttpResponse("200")
 
 #查询商品信息

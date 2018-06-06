@@ -4,7 +4,7 @@ from django.db import models
 class user (models.Model):
     name = models.CharField(max_length=32)
     phone = models.CharField(max_length=32)
-    token = models.CharField(max_length=255,null=True)
+    token = models.TextField(null=True)
     status = models.CharField(max_length=32,null=True)
 
 
