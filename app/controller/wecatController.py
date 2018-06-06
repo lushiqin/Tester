@@ -37,6 +37,26 @@ def secHost(request):
     for i in hostList:
         hosts.append(i)
     return HttpResponse(simplejson.dumps(hosts))
+# 保存接口数据
+def addInter(request):
+    responseBody=request.body
+    responseData = json.loads(responseBody.decode('utf-8'))
+    data = {
+        "nameUrl":responseData['interName'],
+        "addressUrl":responseData['interUrl']
+    }
+    try:
+        models.interfaceUrl.objects.update_or_create(addressUrl=responseData['interUrl'],defaults=data)
+    except Exception as e:
+        print(e)
+    return HttpResponse("200")
+# 查询接口信息
+def secInter(request):
+    interList = models.interfaceUrl.objects.all().values()
+    inters = []
+    for i in interList:
+        inters.append(i)
+    return HttpResponse(simplejson.dumps(inters))
 
 #新增用户信息
 def addUser(request):

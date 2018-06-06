@@ -26,6 +26,8 @@ urlpatterns = [
     path(r'getOpenId',wecatController.getOpenId),
     path(r'addHost',wecatController.addHost),
     path(r'secHost',wecatController.secHost),
+    path(r'addInter',wecatController.addInter),
+    path(r'secInter',wecatController.secInter),
     path(r'secUser',wecatController.secUser),
     path(r'addUser',wecatController.addUser),
     path(r'addCommo',wecatController.addCommo),
