@@ -1,23 +1,49 @@
 from django.db import models
+import time
 
-# Create your models here.
-class user (models.Model):
-    name = models.CharField(max_length=32)
-    phone = models.CharField(max_length=32)
+#用户基础表
+class user(models.Model):
+    userName = models.CharField(max_length=32,null=True)
+    userPhone = models.CharField(max_length=32,null=True)
+    status = models.IntegerField(max_length=32, default=1)
+    create_time = models.DateTimeField(default=time.time())
+    update_time = models.DateTimeField(default=time.time())
+
+#用户信息表
+class userInfo(models.Model):
+    userId = models.IntegerField(max_length=32,null=True)
     token = models.TextField(null=True)
-    status = models.CharField(max_length=32,null=True)
+    openid = models.TextField(null=True)
+    create_time = models.DateTimeField(default=time.time())
+    update_time = models.DateTimeField(default=time.time())
 
+#用户formID表
+class userFromId(models.Model):
+    userId = models.IntegerField(null=True)
+    userFromId = models.CharField(max_length=32,null=True)
+    status = models.IntegerField(max_length=32, default=1)
+    create_time = models.DateTimeField(default=time.time())
+    update_time = models.DateTimeField(default=time.time())
 
-class host (models.Model):
-    hostName = models.CharField(max_length=32)
-    hostUrl = models.CharField(max_length=32)
+#accessToken表
+class accessToken(models.Model):
+    access_token = models.TextField(null=True)
+    status = models.IntegerField(max_length=32, default=1)
+    create_time = models.DateTimeField(default=time.time())
+    update_time = models.DateTimeField(default=time.time())
 
-class interfaceUrl(models.Model):
-    nameUrl = models.CharField(max_length=32)
-    addressUrl = models.CharField(max_length=32)
+#服务器地址表
+class hostInfo(models.Model):
+    hostName = models.CharField(max_length=32,null=True)
+    hostUrl = models.CharField(max_length=32,null=True)
+    status = models.IntegerField(max_length=32, default=1)
+    create_time = models.DateTimeField(default=time.time())
+    update_time = models.DateTimeField(default=time.time())
 
-class commodity(models.Model):
-    commoName = models.CharField(max_length=32)
-    commoPrice = models.CharField(max_length=32)
-    commoInfo = models.CharField(max_length=32)
-    status = models.CharField(max_length=32)
+#接口地址表
+class interfaceInfo(models.Model):
+    interfaceName = models.CharField(max_length=32,null=True)
+    interfaceUrl = models.CharField(max_length=32,null=True)
+    status = models.IntegerField(max_length=32, default=1)
+    create_time = models.DateTimeField(default=time.time())
+    update_time = models.DateTimeField(default=time.time())

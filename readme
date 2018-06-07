@@ -1,0 +1,7 @@
+# POST方法
+# responseBody = request.body
+# responseData = simplejson.loads(responseBody.decode('utf-8'))
+# 查询数据库值传给前端时，需要simplejson.dumps()
+# GET方法
+# responseBody = resquest.GET['name']
+#解析请求结果内容时，simplejson.loads()

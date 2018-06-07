@@ -15,22 +15,26 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from app import views,index,Tester
-from app.controller import wecatController
+from app.controller import accessToken,fromId,hostInfo,interfaceInfo,user,userInfo,wxInfo
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('userCreat/', views.UserCreat),
-    path(r'', index.index),
-    path(r'test',Tester.Tester),
-    path(r'getOpenId',wecatController.getOpenId),
-    path(r'addHost',wecatController.addHost),
-    path(r'secHost',wecatController.secHost),
-    path(r'addInter',wecatController.addInter),
-    path(r'secInter',wecatController.secInter),
-    path(r'secUser',wecatController.secUser),
-    path(r'addUser',wecatController.addUser),
-    path(r'addCommo',wecatController.addCommo),
-    path(r'secCommo',wecatController.secCommo)
-    # path(r'postTest',wecatController.postTest)
+    path('getOpenId',wxInfo.getOpenId),
+    path(r'addUser',user.addUser),
+    path(r'secAllUser',user.secAll),
+    path(r'secOneUser',user.secOne),
+    path(r'addUserInfo',userInfo.addUser),
+    path(r'secAllInfo',userInfo.secAll),
+    path(r'secOneInfo',userInfo.secOne),
+    path(r'addFromId',fromId.addFromId),
+    path(r'secOneFromId',fromId.secOne),
+    path(r'addAccessToken',accessToken.saveDb),
+    path(r'updateAccessToken',accessToken.updateDb),
+    path(r'addHost',hostInfo.addHost),
+    path(r'secAllHost',hostInfo.secAll),
+    path(r'secOneHost',hostInfo.secOne),
+    path(r'addInterface',interfaceInfo.addInterface),
+    path(r'secAllInterface',interfaceInfo.secAll),
+    path(r'secOneInterface',interfaceInfo.secOne)
+
 ]

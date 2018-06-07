@@ -1,12 +1,24 @@
 from django.shortcuts import HttpResponse,render
 from app import models
+from threading import Timer
+import time
 import requests
 import simplejson
 import json
+
+# POST方法
+# responseBody = request.body
+# responseData = simplejson.loads(responseBody.decode('utf-8'))
+# 传给前端时，需要simplejson.dumps()
+# GET方法
+# responseBody = resquest.GET['name']
+#解析请求结果内容时，
+
+
 # 获取微信openid
 def getOpenId(request):
     response = request.body
-    postData = json.loads(response.decode('utf-8'))
+    postData = simplejson.loads(response.decode('utf-8'))
     code = postData['code']
     url = "https://api.weixin.qq.com/sns/jscode2session"
     param = {
@@ -17,6 +29,19 @@ def getOpenId(request):
     }
     response = requests.get(url=url,params=param)
     return HttpResponse(response.text)
+
+#定时更新accesstoken
+def TimerAccesstoken(msg,starttime):
+    url = "https://api.weixin.qq.com/cgi-bin/token"
+    data = {
+        "grant_type":"client_credential",
+        "appid":"wx9fd2a84766c0dda5",
+        "secret":"e106036d80c977244519f4f1753223dc",
+    }
+    response = requests.get(url=url,params=data)
+    cont = simplejson.loads(response.text)
+    models.AccessToken.objects.update(access_token = cont['access_token'],updatetime = time.time())
+
 
 #新增服务器信息
 def addHost(request):
@@ -66,6 +91,8 @@ def addUser(request):
         "name":responseData["name"],
         "phone":responseData["phone"],
         "token":responseData["token"],
+        "openid":responseData["openid"],
+        "session_key":responseData["session_key"],
         "status":responseData["status"]
     }
     try:
@@ -81,6 +108,14 @@ def secUser(request):
     for i in userList:
         users.append(i)
     return HttpResponse(simplejson.dumps(users))
+def secOneUser(request):
+    responseBody = request.body
+    responseData =json.loads(responseBody.decode('utf-8'))
+    try:
+        user = models.user.objects.get(phone = responseData['phone'])
+        return HttpResponse(simplejson.dumps(user))
+    except Exception as e:
+        return HttpResponse("无数据")
 
 #新增商品信息
 def addCommo(request):
@@ -102,3 +137,17 @@ def secCommo(request):
     for i in commos:
         commos.append(i)
     return HttpResponse(simplejson.dumps(commos))
+
+#存储用户formID
+def saveUserFormId(request):
+    responseBody = request.body
+    responseData = json.loads(responseBody.decode('utf-8'))
+    data = {
+        "userId":responseData['userId'],
+        "fromId":responseData['fromId'],
+        "status":1,
+        "creattime":time.time(),
+        "updatetime":time.time()
+    }
+    models.userFromId.objects.update_or_create(fromId =responseData['fromId'],defaults=data)
+    return HttpResponse("200")
