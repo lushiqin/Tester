@@ -6,7 +6,7 @@ import time
 
 
 #获取发送消息需要的accesstoken并保存，有效时长为7200
-def saveDb(msg,starttime):
+def saveDb():
     url = "https://api.weixin.qq.com/cgi-bin/token"
     data = {
         "grant_type":"client_credential",
@@ -15,8 +15,7 @@ def saveDb(msg,starttime):
     }
     response = requests.get(url=url,params=data)
     cont = simplejson.loads(response.text)
-    models.accessToken.objects.update(access_token = cont['access_token'],updatetime = time.time())
-
+    return cont['access_token']
 
 #更新accesstoken信息
 def updateDb(request):

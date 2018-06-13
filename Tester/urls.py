@@ -35,6 +35,7 @@ urlpatterns = [
     path(r'secOneHost',hostInfo.secOne),
     path(r'addInterface',interfaceInfo.addInterface),
     path(r'secAllInterface',interfaceInfo.secAll),
-    path(r'secOneInterface',interfaceInfo.secOne)
+    path(r'secOneInterface',interfaceInfo.secOne),
+    path(r'sendmsg',wxInfo.setmessage)
 
 ]
