@@ -41,37 +41,48 @@ def setmessage(request):
         formId = models.userFromId.objects.filter(
             status=1,userId=responseData['userId']).values()[0]
         access_token = accessToken.saveDb()
-        url = "https://api.weixin.qq.com/cgi-bin/message/wxopen/template/send?access_token="+access_token,
-        param = {
-            "touser": responseData['openid'],
-            "template_id": "snFhkAziKZninEfFzEQAajBCUsCt6G5JVYt9986I5UA",
-            "form_id": formId['userFromId'],
+        openId = responseData['openid']
+        templateId = "snFhkAziKZninEfFzEQAajBCUsCt6G5JVYt9986I5UA"
+        formIds = formId['userFromId']
+        key1 = responseData['k1']
+        key2 = responseData['k2']
+        key3 = responseData['k3']
+        key4 = time.time()
+        key5 = responseData['k5']
+        url = "https://api.weixin.qq.com/cgi-bin/message/wxopen/template/send?access_token="+access_token
+
+        content = {
+            "touser": openId,
+            "template_id": templateId,
+            "form_id": formIds,
             "data": {
                 "keyword1": {
-                    "value": responseData['k1'],
+                    "value": key1,
                     "color": "#173177"
                 },
                 "keyword2": {
-                    "value": responseData['k2'],
+                    "value": key2,
                     "color": "#173177"
                 },
                 "keyword3": {
-                    "value": responseData['k3'],
+                    "value": key3,
                     "color": "#173177"
                 },
                 "keyword4": {
-                    "value": time.time(),
+                    "value": key4,
                     "color": "#173177"
                 },
                 "keyword5": {
-                    "value": responseData['k5'],
+                    "value": key5,
                     "color": "#173177"
-                },
+                }
             },
             "emphasis_keyword": "keyword1.DATA"
         }
-        response = requests.post(url=url,data=param)
-        print("success",response)
+        response = requests.post(url=url,data=simplejson.dumps(content)).json()
+        if(response['errcode'] == 0):
+            models.userFromId.objects.filter(userFromId=formIds).update(status = 0)
+
     except Exception as e:
         print("error",e)
     return HttpResponse("200")
