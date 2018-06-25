@@ -4,7 +4,7 @@ import requests
 import re
 
 
-def Test(request):
+def xs84(request):
     try:
         response = requests.get("http://www.xs84.la/")
         soup = BeautifulSoup(response.text,'lxml')

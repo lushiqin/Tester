@@ -38,6 +38,6 @@ urlpatterns = [
     path(r'secAllInterface',interfaceInfo.secAll),
     path(r'secOneInterface',interfaceInfo.secOne),
     path(r'sendmsg',wxInfo.setmessage),
-    path(r'test',Beautiful_Soup.Test)
+    path(r'xs84',Beautiful_Soup.xs84)
 
 ]
