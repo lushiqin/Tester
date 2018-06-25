@@ -4,7 +4,7 @@ import requests
 import simplejson
 import time
 from app.controller import accessToken
-
+from app.controller import fromId
 #获取微信openid
 def getOpenId(request):
     response = request.body
@@ -38,42 +38,43 @@ def setmessage(request):
     responseBody = request.body
     responseData = simplejson.loads(responseBody.decode('utf-8'))
     try:
-        formId = models.userFromId.objects.filter(
-            status=1,userId=responseData['userId']).values()[0]
+        userFromId = fromId.secOne(responseData['openid'])['userFromId']
         access_token = accessToken.saveDb()
         openId = responseData['openid']
         templateId = "snFhkAziKZninEfFzEQAajBCUsCt6G5JVYt9986I5UA"
-        formIds = formId['userFromId']
-        key1 = responseData['k1']
-        key2 = responseData['k2']
-        key3 = responseData['k3']
-        key4 = time.time()
-        key5 = responseData['k5']
+        interurl = responseData['k1']
+        intersend = str(responseData['k2'])
+        interData = str(responseData['k3'])
+        interTime = time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))
+        interCode = responseData['k5']
+        if(len(interData)>200):
+            interData = interData[0:100]
+        if(len(intersend)>200):
+            intersend = intersend[0:100]
         url = "https://api.weixin.qq.com/cgi-bin/message/wxopen/template/send?access_token="+access_token
-
         content = {
             "touser": openId,
             "template_id": templateId,
-            "form_id": formIds,
+            "form_id": userFromId,
             "data": {
                 "keyword1": {
-                    "value": key1,
+                    "value": interurl,
                     "color": "#173177"
                 },
                 "keyword2": {
-                    "value": key2,
+                    "value": intersend,
                     "color": "#173177"
                 },
                 "keyword3": {
-                    "value": key3,
+                    "value": interData,
                     "color": "#173177"
                 },
                 "keyword4": {
-                    "value": key4,
+                    "value": interTime,
                     "color": "#173177"
                 },
                 "keyword5": {
-                    "value": key5,
+                    "value": str(interCode),
                     "color": "#173177"
                 }
             },
@@ -81,7 +82,15 @@ def setmessage(request):
         }
         response = requests.post(url=url,data=simplejson.dumps(content)).json()
         if(response['errcode'] == 0):
-            models.userFromId.objects.filter(userFromId=formIds).update(status = 0)
+            models.userFromId.objects.filter(userFromId=userFromId).update(status = 0)
+        elif(response['errcode'] ==41028):
+            print("form_id不正确，或者过期")
+        elif (response['errcode'] == 41029):
+            print("form_id已被使用")
+        elif (response['errcode'] == 45009):
+            print("接口调用超过限额（目前默认每个帐号日调用限额为100万）")
+        else:
+            print(response)
 
     except Exception as e:
         print("error",e)

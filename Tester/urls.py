@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from app.controller import accessToken,fromId,hostInfo,interfaceInfo,user,userInfo,wxInfo
+from app.controller import Beautiful_Soup
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -36,6 +37,7 @@ urlpatterns = [
     path(r'addInterface',interfaceInfo.addInterface),
     path(r'secAllInterface',interfaceInfo.secAll),
     path(r'secOneInterface',interfaceInfo.secOne),
-    path(r'sendmsg',wxInfo.setmessage)
+    path(r'sendmsg',wxInfo.setmessage),
+    path(r'test',Beautiful_Soup.Test)
 
 ]

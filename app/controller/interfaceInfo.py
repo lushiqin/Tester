@@ -10,12 +10,15 @@ def addInterface(request):
     responseData = simplejson.loads(responseBody.decode("utf-8"))
     data = responseData['data']
     pattern = re.compile(r'\w+')
-    models.interfaceInfo.objects.create( interfaceName = responseData['interfaceName'],
-                                         interfaceUrl = responseData['interfaceUrl'],
-                                         methodType = responseData['methodType'],
-                                         data = pattern.findall(data),
-                                         status =1,
-                                         create_time=time.time(),update_time=time.time())
+    try:
+        models.interfaceInfo.objects.create( interfaceName = responseData['interfaceName'],
+                                             interfaceUrl = responseData['interfaceUrl'],
+                                             methodType = responseData['methodType'],
+                                             data = pattern.findall(data),
+                                             status =1,
+                                             create_time=time.time(),update_time=time.time())
+    except Exception as e:
+        print(e)
     return HttpResponse("200")
 
 
