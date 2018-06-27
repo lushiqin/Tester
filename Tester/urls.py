@@ -17,10 +17,12 @@ from django.contrib import admin
 from django.urls import path
 from app.controller import accessToken,fromId,hostInfo,interfaceInfo,user,userInfo,wxInfo
 from app.controller import Beautiful_Soup
+from app.controller import index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('getOpenId',wxInfo.getOpenId),
+    path(r'',index.index),
+    path(r'getOpenId',wxInfo.getOpenId),
     path(r'addUser',user.addUser),
     path(r'secAllUser',user.secAll),
     path(r'secOneUser',user.secOne),
@@ -38,6 +40,8 @@ urlpatterns = [
     path(r'secAllInterface',interfaceInfo.secAll),
     path(r'secOneInterface',interfaceInfo.secOne),
     path(r'sendmsg',wxInfo.setmessage),
-    path(r'xs84',Beautiful_Soup.xs84)
+    path(r'xs84',Beautiful_Soup.xs84),
+    path(r'xsml',Beautiful_Soup.xsml),
+    path(r'xszj',Beautiful_Soup.xszj)
 
 ]
