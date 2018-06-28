@@ -46,7 +46,6 @@ urlpatterns = [
     path(r'xszj',Beautiful_Soup.xszj),
     path(r'xstest',Beautiful_Soup.xstest),
     path(r'bqghomepage',book_bqg.homePage),
-    path(r'bqgtypecolumn',book_bqg.typeColumn),
     path(r'bqgcatalog',book_bqg.catalog),
     path(r'bqgdetails',book_bqg.details)
 
