@@ -18,6 +18,7 @@ from django.urls import path
 from app.controller import accessToken,fromId,hostInfo,interfaceInfo,user,userInfo,wxInfo
 from app.controller import Beautiful_Soup
 from app.controller import index
+from app.controller import book_bqg
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -42,6 +43,11 @@ urlpatterns = [
     path(r'sendmsg',wxInfo.setmessage),
     path(r'xs84',Beautiful_Soup.xs84),
     path(r'xsml',Beautiful_Soup.xsml),
-    path(r'xszj',Beautiful_Soup.xszj)
+    path(r'xszj',Beautiful_Soup.xszj),
+    path(r'xstest',Beautiful_Soup.xstest),
+    path(r'bqghomepage',book_bqg.homePage),
+    path(r'bqgtypecolumn',book_bqg.typeColumn),
+    path(r'bqgcatalog',book_bqg.catalog),
+    path(r'bqgdetails',book_bqg.details)
 
 ]
