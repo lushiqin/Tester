@@ -9,6 +9,7 @@ def addUser(request):
     data = {
         "userName":responseData['name'],
         "token":responseData['token'],
+        "openid":responseData['openid'],
         "create_time":time.time(),
         "update_time":time.time()
     }
@@ -16,9 +17,7 @@ def addUser(request):
         models.user.objects.update_or_create(userPhone = responseData['phone'],defaults=data)
         print(models.user.objects.all())
     except Exception as e:
-        print("-----------------------------------------")
         print(e)
-        print("-----------------------------------------")
     return HttpResponse("200")
 
 

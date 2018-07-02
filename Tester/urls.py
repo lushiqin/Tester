@@ -19,6 +19,10 @@ from app.controller import accessToken,fromId,hostInfo,interfaceInfo,user,userIn
 from app.controller import Beautiful_Soup
 from app.controller import index
 from app.controller import book_bqg
+from app.controller import test
+from apscheduler.schedulers.background import BackgroundScheduler
+from django_apscheduler.jobstores import DjangoJobStore,register_events,register_job
+import time
 
 urlpatterns = [
     path('admin/', admin.site.urls),

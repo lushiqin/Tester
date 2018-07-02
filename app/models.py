@@ -6,6 +6,7 @@ class user(models.Model):
     userName = models.CharField(max_length=256,null=True)
     userPhone = models.CharField(max_length=256,null=True)
     token = models.TextField(null=True)
+    openid = models.TextField(null=True)
     status = models.IntegerField(default=1)
     create_time = models.IntegerField(null=True)
     update_time = models.IntegerField(null=True)
