@@ -24,7 +24,7 @@ SECRET_KEY = 'f0iqe)=n7@5%@nv6%tjya$2zsg#rqc%o%6+nvlxwt=&+)csu21'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = True 时，使用 python manage.py runserver --insecure
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     '*'
@@ -135,6 +135,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'static'),)
-STATICFILES_DIRS  = (
-    os.path.join(BASE_DIR, "static"),
-)
+STATICFILES_DIRS  = [
+    os.path.join(BASE_DIR, "static")
+]

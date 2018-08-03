@@ -20,6 +20,7 @@ from app.controller import Beautiful_Soup
 from app.controller import index
 from app.controller import book_bqg
 from app.controller import test
+from app.controller import usercanvas
 from apscheduler.schedulers.background import BackgroundScheduler
 from django_apscheduler.jobstores import DjangoJobStore,register_events,register_job
 import time
@@ -51,6 +52,9 @@ urlpatterns = [
     path(r'xstest',Beautiful_Soup.xstest),
     path(r'bqghomepage',book_bqg.homePage),
     path(r'bqgcatalog',book_bqg.catalog),
-    path(r'bqgdetails',book_bqg.details)
+    path(r'bqgdetails',book_bqg.details),
+    path(r'addcanvas',usercanvas.insert),
+    path(r'canvasimg',usercanvas.select),
+    path(r'basedata',usercanvas.basedata)
 
 ]
