@@ -47,6 +47,19 @@ class interfaceInfo(models.Model):
     interfaceUrl = models.CharField(max_length=256,null=True)
     methodType = models.CharField(max_length=256,null=True)
     data = models.TextField(null=True)
+    resData = models.TextField(null=True)
     status = models.IntegerField(default=1)
     create_time = models.IntegerField(null=True)
     update_time = models.IntegerField(null=True)
+
+#用户canvas图像
+class userCanvas(models.Model):
+    moblie = models.CharField(max_length=11 ,null=True)
+    canvasImg = models.ImageField(max_length=256,upload_to='canvas/img')
+    canvasid = models.CharField(max_length=256,null=True)
+    answer = models.CharField(max_length=256,null=True)
+    create_time = models.IntegerField(null=True)
+
+#数据
+class baseData(models.Model):
+    text = models.CharField(max_length=256,null=True)

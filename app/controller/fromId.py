@@ -7,6 +7,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 from django_apscheduler.jobstores import register_job,register_events,DjangoJobStore
 
 def addFromId(request):
+    print("访问到了addFromId")
     responseBody = request.body
     responseData = simplejson.loads(responseBody.decode("utf-8"))
     if(responseData['formId'] == "the formId is a mock one"):
