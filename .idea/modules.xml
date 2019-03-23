@@ -4,6 +4,12 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../GU/.idea/GU.iml" filepath="$PROJECT_DIR$/../GU/.idea/GU.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Tester.iml" filepath="$PROJECT_DIR$/.idea/Tester.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../autotestproject/.idea/autotest.iml" filepath="$PROJECT_DIR$/../../../autotestproject/.idea/autotest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../giteeProject/.idea/giteeProject.iml" filepath="$PROJECT_DIR$/../../../giteeProject/.idea/giteeProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../newgs/.idea/newgs.iml" filepath="$PROJECT_DIR$/../../../newgs/.idea/newgs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../.idea/python.iml" filepath="$PROJECT_DIR$/../.idea/python.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../pythonTest/.idea/pythonTest.iml" filepath="$PROJECT_DIR$/../../../pythonTest/.idea/pythonTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../pythonexe/.idea/pythonexe.iml" filepath="$PROJECT_DIR$/../pythonexe/.idea/pythonexe.iml" />
     </modules>
   </component>
 </project>

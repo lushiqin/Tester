@@ -15,6 +15,15 @@
     <orderEntry type="jdk" jdkName="Python 3.5.2 (C:\Lsq\python3\python.exe)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="GU" />
+    <orderEntry type="module" module-name="pythonexe" />
+    <orderEntry type="module" module-name="python" />
+    <orderEntry type="module" module-name="giteeProject" />
+    <orderEntry type="module" module-name="pythonTest" />
+    <orderEntry type="module" module-name="newgs" />
+    <orderEntry type="module" module-name="autotestproject" />
+  </component>
+  <component name="PackageRequirementsSettings">
+    <option name="requirementsPath" value="" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />
@@ -23,5 +32,8 @@
         <option value="$MODULE_DIR$/../Tester\templates" />
       </list>
     </option>
+  </component>
+  <component name="TestRunnerService">
+    <option name="PROJECT_TEST_RUNNER" value="Unittests" />
   </component>
 </module>

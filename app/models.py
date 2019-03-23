@@ -54,8 +54,8 @@ class interfaceInfo(models.Model):
 
 #用户canvas图像
 class userCanvas(models.Model):
-    moblie = models.CharField(max_length=11 ,null=True)
-    canvasImg = models.ImageField(max_length=256,upload_to='canvas/img')
+    moblie = models.CharField(max_length=256 ,null=True)
+    canvasImg = models.ImageField(max_length=256,upload_to='static/img')
     canvasid = models.CharField(max_length=256,null=True)
     answer = models.CharField(max_length=256,null=True)
     create_time = models.IntegerField(null=True)
